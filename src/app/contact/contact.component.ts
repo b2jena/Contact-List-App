@@ -24,10 +24,23 @@ constructor(private userservice: UserService) {}
         this.contacts = data;
       });
   }
+  
   // Write logic to add a Contact by using addContact method of UserService
   // Display message 'Contact already exists' if already a contact exists with same mobile number
   // Display message 'Failed to add Contact' while error handling
   // Display message 'Contact Added' if contact is added
+  insert:any;
   onSubmit() {
+    console.log(this.form);
+    this.userservice.addContact(this.form).subscribe( dat =>{
+
+      this.insert = dat;
+      this.isContactedAdded=true;
+      this.message="Contact added"
+
+  }, err =>{ 
+    this.isContactedAdded=false;
+    this.message="Not added"});
+  
   }
 }
